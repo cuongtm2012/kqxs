@@ -16,7 +16,7 @@ import domain.ketqua;
 public class SoxoAPI {
 	static Utility util = new Utility();
 
-	static ArrayList<chotKQ> parseChotKQ(String chotkq) {
+	public static ArrayList<chotKQ> parseChotKQ(String chotkq) {
 		String content = "";
 		String lo = "";
 		String lodau = "";
@@ -88,7 +88,7 @@ public class SoxoAPI {
 		return listChotKQ;
 	}
 
-	static ketqua ketquasx(String inputURL) {
+	public static ketqua ketquasx(String inputURL) {
 		ketqua kq = new ketqua();
 
 		try {
@@ -128,13 +128,59 @@ public class SoxoAPI {
 					String kq_25 = element.getElementsByClass("kq_25").html();
 					String kq_26 = element.getElementsByClass("kq_26").html();
 
+					kq.setKq0(kq_0);
+					kq.setKq1(kq_1);
+					kq.setKq2(kq_2);
+					kq.setKq3(kq_3);
+					kq.setKq4(kq_4);
+					kq.setKq5(kq_5);
+					kq.setKq6(kq_6);
+					kq.setKq7(kq_7);
+					kq.setKq8(kq_8);
+					kq.setKq9(kq_9);
+					kq.setKq10(kq_10);
+					kq.setKq11(kq_11);
+					kq.setKq12(kq_12);
+					kq.setKq13(kq_13);
+					kq.setKq14(kq_14);
+					kq.setKq15(kq_15);
+					kq.setKq16(kq_16);
+					kq.setKq17(kq_17);
+					kq.setKq18(kq_18);
+					kq.setKq19(kq_19);
+					kq.setKq20(kq_20);
+					kq.setKq21(kq_21);
+					kq.setKq22(kq_22);
+					kq.setKq23(kq_23);
+					kq.setKq24(kq_24);
+					kq.setKq25(kq_25);
+					kq.setKq26(kq_26);
 				}
-
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e);
 		}
 		return kq;
+	}
+	
+	public static String[] trendArr(String URL){
+		String[] arrayTrend = new String[100];
+		try {
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return arrayTrend;
+	}
+	
+	public static String[] caudepArr(String URL){
+		String[] arrayCaudep = new String[100];
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return arrayCaudep;
 	}
 }
