@@ -1,4 +1,4 @@
-package lode;
+package services;
 
 import java.util.ArrayList;
 
@@ -10,8 +10,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.util.StringUtils;
 
-import domain.chotKQ;
-import domain.ketqua;
+import entity.chotKQ;
+import entity.ketqua;
+import until.Utility;
 
 public class SoxoAPI {
 	static Utility util = new Utility();
@@ -40,7 +41,6 @@ public class SoxoAPI {
 			content = util.obtainContent(chotkq);
 			JSONObject json = new JSONObject(content);
 			JSONArray arrChotKQ = json.getJSONArray("list");
-			chotKQ chotKQObj = new chotKQ();
 
 			for (Object object : arrChotKQ) {
 				JSONObject obj = (JSONObject) object;
@@ -62,25 +62,11 @@ public class SoxoAPI {
 				ratio_lobt = ratio.getString("lobt");
 				ratio_debt = ratio.getString("debt");
 
-				// save to Object
-				chotKQObj.setLo(lo);
-				chotKQObj.setLodau(lodau);
-				chotKQObj.setLodit(lodit);
-				chotKQObj.setLobt(lobt);
-				chotKQObj.setDedau(dedau);
-				chotKQObj.setDedit(dedit);
-				chotKQObj.setDebt(debt);
-				chotKQObj.setEmail(email);
-				chotKQObj.setName(name);
-				chotKQObj.setRank(rank);
-				chotKQObj.setRatio_de(ratio_de);
-				chotKQObj.setRatio_lo(ratio_lo);
-				chotKQObj.setRatio_lobt(ratio_lobt);
-				chotKQObj.setRatio_debt(ratio_debt);
+				chotKQ chotKQObj = new chotKQ(lo, lodau, lodit, lobt, dedau, dedit, debt, email, name, rank, ratio_de,
+						ratio_lo, ratio_lobt, ratio_debt);
 
 				// Add to List
 				listChotKQ.add(chotKQObj);
-
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -89,16 +75,11 @@ public class SoxoAPI {
 	}
 
 	public static ketqua ketquasx(String inputURL) {
-		ketqua kq = new ketqua();
-
 		try {
 			String content = util.obtainContentBypassShield(inputURL);
-
 			if (!StringUtils.isEmpty(content)) {
 				Document doc = Jsoup.parse(content);
-
 				Elements ketquaClass = doc.getElementsByClass("ketqua");
-
 				for (Element element : ketquaClass) {
 					String kq_0 = element.getElementsByClass("kq_0").html();
 					String kq_1 = element.getElementsByClass("kq_1").html();
@@ -128,58 +109,35 @@ public class SoxoAPI {
 					String kq_25 = element.getElementsByClass("kq_25").html();
 					String kq_26 = element.getElementsByClass("kq_26").html();
 
-					kq.setKq0(kq_0);
-					kq.setKq1(kq_1);
-					kq.setKq2(kq_2);
-					kq.setKq3(kq_3);
-					kq.setKq4(kq_4);
-					kq.setKq5(kq_5);
-					kq.setKq6(kq_6);
-					kq.setKq7(kq_7);
-					kq.setKq8(kq_8);
-					kq.setKq9(kq_9);
-					kq.setKq10(kq_10);
-					kq.setKq11(kq_11);
-					kq.setKq12(kq_12);
-					kq.setKq13(kq_13);
-					kq.setKq14(kq_14);
-					kq.setKq15(kq_15);
-					kq.setKq16(kq_16);
-					kq.setKq17(kq_17);
-					kq.setKq18(kq_18);
-					kq.setKq19(kq_19);
-					kq.setKq20(kq_20);
-					kq.setKq21(kq_21);
-					kq.setKq22(kq_22);
-					kq.setKq23(kq_23);
-					kq.setKq24(kq_24);
-					kq.setKq25(kq_25);
-					kq.setKq26(kq_26);
+					ketqua kq = new ketqua(kq_0, kq_1, kq_2, kq_3, kq_4, kq_5, kq_6, kq_7, kq_8, kq_9, kq_10, kq_11,
+							kq_12, kq_13, kq_14, kq_15, kq_16, kq_17, kq_18, kq_19, kq_20, kq_21, kq_22, kq_23, kq_24,
+							kq_25, kq_26);
+					return kq;
 				}
 			}
 
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		return kq;
+		return null;
 	}
-	
-	public static String[] trendArr(String URL){
+
+	public static String[] trendArr(String URL) {
 		String[] arrayTrend = new String[100];
 		try {
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return arrayTrend;
 	}
-	
-	public static String[] caudepArr(String URL){
+
+	public static String[] caudepArr(String URL) {
 		String[] arrayCaudep = new String[100];
 		try {
-			
+
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e);
 		}
 		return arrayCaudep;
 	}
