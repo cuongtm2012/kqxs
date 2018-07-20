@@ -67,7 +67,6 @@ public class SoxoAPI {
 
 				// Add to List
 				listChotKQ.add(chotKQObj);
-
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -138,7 +137,7 @@ public class SoxoAPI {
 		try {
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e);
 		}
 		return arrayCaudep;
 	}
