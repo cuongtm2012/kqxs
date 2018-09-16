@@ -59,7 +59,11 @@
 			<version>1.18.2</version>
 			<scope>provided</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>2.10.1</version>
+		</dependency>
 	</dependencies>
 	<name>KQXS</name>
 </project>

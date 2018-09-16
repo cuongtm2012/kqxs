@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class chotKQ {
-
 	String[] de;
 	String[] lo;
 	String[] lodau;

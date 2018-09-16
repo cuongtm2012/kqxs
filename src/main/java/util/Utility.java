@@ -1,4 +1,4 @@
-package services;
+package util;
 
 import java.net.URL;
 import java.net.URLConnection;
@@ -11,9 +11,9 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 public class Utility {
 
 	private WebClient webClient;
-	int WEBTIMEOUT = 10000;
+	static int WEBTIMEOUT = 10000;
 
-	public String obtainContent(String url) {
+	public static String obtainContent(String url) {
 		String content = null;
 		URLConnection connection = null;
 		try {

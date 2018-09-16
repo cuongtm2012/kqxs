@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class caudep {
-
 	String lotto = "";
 	Date ngaychot;
 }

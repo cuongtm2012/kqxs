@@ -12,9 +12,11 @@ import org.springframework.util.StringUtils;
 
 import domain.chotKQ;
 import domain.ketqua;
+import lombok.AllArgsConstructor;
+import util.Utility;
 
+@AllArgsConstructor
 public class SoxoAPI {
-	static Utility util = new Utility();
 
 	public static ArrayList<chotKQ> parseChotKQ(String chotkq) {
 		String content = "";
@@ -44,17 +46,13 @@ public class SoxoAPI {
 		ArrayList<chotKQ> listChotKQ = new ArrayList<chotKQ>();
 
 		try {
-			content = util.obtainContent(chotkq);
+			content = Utility.obtainContent(chotkq);
 			JSONObject json = new JSONObject(content);
 			JSONArray arrChotKQ = json.getJSONArray("list");
-			chotKQ chotKQObj = new chotKQ();
-			
-//			{"de":[],"lo":["32"],"lobt":"65","dedau":[],"lodit":[],"lodau":[],"uid":"86332","ct":"1527766155","name":"Bi Còi","rank":32.85,"id":"427250","debt":"",
-//			"dedit":[],"email":"quangbino97@gmail.com","ut":"1527766671.0636","ratio":{"de":[1,82],"lo":[74,239],"lobt":[74,223],"debt":[0,14]}}
-			
 			for (Object object : arrChotKQ) {
+				chotKQ chotKQObj = new chotKQ();
 				JSONObject obj = (JSONObject) object;
-
+				System.out.println(obj);
 				de = obj.getJSONArray("de");
 				String[] deArray = de.join(",").split(",");
 				lo = obj.getJSONArray("lo");
@@ -78,7 +76,7 @@ public class SoxoAPI {
 					    rankInt = rank.hashCode();
 					}
 				}
-				if(obj.has("ratio") && !obj.isNull("ratio") && obj.getJSONObject("ratio") != null){
+				if(obj.has("ratio") && !obj.isNull("ratio") && !obj.get("ratio").toString().equals("[]")){
 					JSONObject ratio = obj.getJSONObject("ratio");
 					if(ratio.has("de")){
 						ratio_de = ratio.getJSONArray("de");
@@ -129,7 +127,7 @@ public class SoxoAPI {
 		ketqua kq = new ketqua();
 
 		try {
-			String content = util.obtainContentBypassShield(inputURL);
+			String content = Utility.obtainContent(inputURL);
 
 			if (!StringUtils.isEmpty(content)) {
 				Document doc = Jsoup.parse(content);

@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class trend {
-
 	String lotto = "";
 	Date ngaychot;
 }
