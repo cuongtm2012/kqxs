@@ -4,11 +4,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import domain.chotKQ;
-import lode.SoxoAPI;
-import lode.Utility;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-public class main {
+import domain.chotKQ;
+import services.SoxoAPI;
+import services.Utility;
+
+@SpringBootApplication 
+@EnableAutoConfiguration
+public class MainApplication {
 
 	static String URL = "https://rongbachkim.com/";
 	static String chotkq = "https://rongbachkim.com/chot.php?getlist&ngay=%s&lastid=0&lastupdate=0";
