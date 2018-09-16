@@ -25,7 +25,7 @@ public class CVSUtil {
 			
 	        for (chotKQ d : chotKQList) {
 
-	            List<String> list = new ArrayList<>();
+	            List<String> list = new ArrayList<String>();
 
 	            writeLine(writer, list);
 	        }

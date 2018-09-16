@@ -18,21 +18,28 @@ public class SoxoAPI {
 
 	public static ArrayList<chotKQ> parseChotKQ(String chotkq) {
 		String content = "";
-		String lo = "";
-		String lodau = "";
-		String lodit = "";
+		JSONArray de;
+		JSONArray lo;
+		JSONArray lodau;
+		JSONArray lodit;
 		String lobt = "";
-		String dedau = "";
-		String dedit = "";
+		JSONArray dedau;
+		JSONArray dedit;
 		String debt = "";
 		String email = "";
 		String name = "";
-		String rank = "";
+		Object rank;
+		Integer rankInt = 0;
 
-		String ratio_de = "";
-		String ratio_lo = "";
-		String ratio_lobt = "";
-		String ratio_debt = "";
+		JSONArray ratio_de;
+		JSONArray ratio_lo;
+		JSONArray ratio_lobt;
+		JSONArray ratio_debt;
+		
+		String ratio_de_str = "";
+		String ratio_lo_str = "";
+		String ratio_lobt_str = "";
+		String ratio_debt_str = "";
 
 		ArrayList<chotKQ> listChotKQ = new ArrayList<chotKQ>();
 
@@ -41,42 +48,72 @@ public class SoxoAPI {
 			JSONObject json = new JSONObject(content);
 			JSONArray arrChotKQ = json.getJSONArray("list");
 			chotKQ chotKQObj = new chotKQ();
-
+			
+//			{"de":[],"lo":["32"],"lobt":"65","dedau":[],"lodit":[],"lodau":[],"uid":"86332","ct":"1527766155","name":"Bi Còi","rank":32.85,"id":"427250","debt":"",
+//			"dedit":[],"email":"quangbino97@gmail.com","ut":"1527766671.0636","ratio":{"de":[1,82],"lo":[74,239],"lobt":[74,223],"debt":[0,14]}}
+			
 			for (Object object : arrChotKQ) {
 				JSONObject obj = (JSONObject) object;
 
-				lo = obj.getString("lo");
-				lodau = obj.getString("lodau");
-				lodit = obj.getString("lodit");
+				de = obj.getJSONArray("de");
+				String[] deArray = de.join(",").split(",");
+				lo = obj.getJSONArray("lo");
+				String[] loArray = lo.join(",").split(",");
+				lodau = obj.getJSONArray("lodau");
+				String[] lodauArray = lodau.join(",").split(",");
+				lodit = obj.getJSONArray("lodit");
+				String[] loditArray = lodit.join(",").split(",");
 				lobt = obj.getString("lobt");
-				dedau = obj.getString("dedau");
-				dedit = obj.getString("dedit");
+				dedau = obj.getJSONArray("dedau");
+				String[] dedauArray = dedau.join(",").split(",");
+				dedit = obj.getJSONArray("dedit");
+				String[] deditArray = dedit.join(",").split(",");
 				debt = obj.getString("debt");
 				email = obj.getString("email");
 				name = obj.getString("name");
-				rank = obj.getString("rank");
-
-				JSONObject ratio = obj.getJSONObject("ratio");
-				ratio_de = ratio.getString("de");
-				ratio_lo = ratio.getString("lo");
-				ratio_lobt = ratio.getString("lobt");
-				ratio_debt = ratio.getString("debt");
+				if(obj.has("rank")){
+					rank = obj.get("rank");
+					if(rank instanceof Integer){
+					    System.out.println(rank);
+					    rankInt = rank.hashCode();
+					}
+				}
+				if(obj.has("ratio") && !obj.isNull("ratio") && obj.getJSONObject("ratio") != null){
+					JSONObject ratio = obj.getJSONObject("ratio");
+					if(ratio.has("de")){
+						ratio_de = ratio.getJSONArray("de");
+						ratio_de_str = ratio_de.get(0).toString();
+					}
+					if(ratio.has("lo")){
+						ratio_lo = ratio.getJSONArray("lo");
+						ratio_lo_str = ratio_lo.get(0).toString();
+					}
+					if(ratio.has("lobt")){
+						ratio_lobt = ratio.getJSONArray("lobt");
+						ratio_lobt_str = ratio_lobt.get(0).toString();
+					}
+					if(ratio.has("debt")){
+						ratio_debt = ratio.getJSONArray("debt");
+						ratio_debt_str = ratio_debt.get(0).toString();
+					}
+				}
 
 				// save to Object
-				chotKQObj.setLo(lo);
-				chotKQObj.setLodau(lodau);
-				chotKQObj.setLodit(lodit);
+				chotKQObj.setDe(deArray);
+				chotKQObj.setLo(loArray);
+				chotKQObj.setLodau(lodauArray);
+				chotKQObj.setLodit(loditArray);
 				chotKQObj.setLobt(lobt);
-				chotKQObj.setDedau(dedau);
-				chotKQObj.setDedit(dedit);
+				chotKQObj.setDedau(dedauArray);
+				chotKQObj.setDedit(deditArray);
 				chotKQObj.setDebt(debt);
 				chotKQObj.setEmail(email);
 				chotKQObj.setName(name);
-				chotKQObj.setRank(rank);
-				chotKQObj.setRatio_de(ratio_de);
-				chotKQObj.setRatio_lo(ratio_lo);
-				chotKQObj.setRatio_lobt(ratio_lobt);
-				chotKQObj.setRatio_debt(ratio_debt);
+				chotKQObj.setRank(rankInt);
+				chotKQObj.setRatio_de(ratio_de_str);
+				chotKQObj.setRatio_lo(ratio_lo_str);
+				chotKQObj.setRatio_lobt(ratio_lobt_str);
+				chotKQObj.setRatio_debt(ratio_debt_str);
 
 				// Add to List
 				listChotKQ.add(chotKQObj);

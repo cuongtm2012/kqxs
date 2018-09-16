@@ -2,37 +2,48 @@ package domain;
 
 public class chotKQ {
 
-	String lo = "";
-	String lodau = "";
-	String lodit = "";
+	String[] de;
+	String[] lo;
+	String[] lodau;
+	String[] lodit;
 	String lobt = "";
-	String dedau = "";
-	String dedit = "";
+	String[] dedau;
+	String[] dedit;
 	String debt = "";
 	String email = "";
 	String name = "";
-	String rank = "";
+	int rank = 0;
 	
 	String ratio_de = "";
 	String ratio_lo = "";
 	String ratio_lobt = "";
 	String ratio_debt = "";
-	public String getLo() {
+	public String[] getLo() {
 		return lo;
 	}
-	public void setLo(String lo) {
+	
+	
+	public String[] getDe() {
+		return de;
+	}
+
+	public void setDe(String[] de) {
+		this.de = de;
+	}
+
+	public void setLo(String[] lo) {
 		this.lo = lo;
 	}
-	public String getLodau() {
+	public String[] getLodau() {
 		return lodau;
 	}
-	public void setLodau(String lodau) {
+	public void setLodau(String[] lodau) {
 		this.lodau = lodau;
 	}
-	public String getLodit() {
+	public String[] getLodit() {
 		return lodit;
 	}
-	public void setLodit(String lodit) {
+	public void setLodit(String[] lodit) {
 		this.lodit = lodit;
 	}
 	public String getLobt() {
@@ -41,16 +52,16 @@ public class chotKQ {
 	public void setLobt(String lobt) {
 		this.lobt = lobt;
 	}
-	public String getDedau() {
+	public String[] getDedau() {
 		return dedau;
 	}
-	public void setDedau(String dedau) {
+	public void setDedau(String[] dedau) {
 		this.dedau = dedau;
 	}
-	public String getDedit() {
+	public String[] getDedit() {
 		return dedit;
 	}
-	public void setDedit(String dedit) {
+	public void setDedit(String[] dedit) {
 		this.dedit = dedit;
 	}
 	public String getDebt() {
@@ -71,10 +82,10 @@ public class chotKQ {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getRank() {
+	public int getRank() {
 		return rank;
 	}
-	public void setRank(String rank) {
+	public void setRank(int rank) {
 		this.rank = rank;
 	}
 	public String getRatio_de() {
