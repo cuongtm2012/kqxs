@@ -1,11 +1,11 @@
 package domain;
 
-import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
 @Data
 public class caudep {
-	String lotto = "";
-	Date ngaychot;
+	List<String> listCaudep;
+	String ngaychot;
 }

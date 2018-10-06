@@ -1,6 +1,8 @@
 package services;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -209,13 +211,20 @@ public class SoxoAPI {
 		return arrayTrend;
 	}
 	
-	public static String[] caudepArr(String URL){
-		String[] arrayCaudep = new String[100];
+	public static List<String> caudepArr(String URL){
+		List<String> listCaudep = new ArrayList();
 		try {
-			
+			if (!StringUtils.isEmpty(URL)) {
+				Document doc = Jsoup.connect(URL).get();
+				Elements ketquaClass = doc.getElementsByClass("a_cau");
+				for (Element element : ketquaClass) {
+					String sodep = element.getElementsByClass("a_cau").html();
+					listCaudep.add(sodep);
+				}
+			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e);
 		}
-		return arrayCaudep;
+		return listCaudep;
 	}
 }

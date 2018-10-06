@@ -31,4 +31,6 @@ public class ketqua {
 	String kq24 = "";
 	String kq25 = "";
 	String kq26 = "";
+	
+	String ngaychot;
 }
